@@ -578,12 +578,13 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
         return a.diem > b.diem;
     });
     int n = min(5, (int)dssv.size());
-    float top_5_diem_cao_nhat = dssv[0].diem;
-    int chieu_cao_toi_da_cot = 30;
-    cout << GREEN <<"\t(*) Bieu do 5 sinh vien co diem cao nhat lop" << RESET << endl;
+    float top_diem_cao_nhat = dssv[0].diem;
+    int chieu_cao_toi_da_cot = 35;
+    cout << GREEN <<"\t(*) Bieu do " << n << " sinh vien co diem cao nhat lop" << RESET << endl;
+    int stt_top_10 = 0;
     for(int i = 0; i < n; i++){
-        int chieu_cao = (dssv[i].diem / top_5_diem_cao_nhat) * chieu_cao_toi_da_cot;
-        cout << YELLOW << "\t" << setw(20) << left << dssv[i].ho_ten << " [ ";
+        int chieu_cao = (dssv[i].diem / top_diem_cao_nhat) * chieu_cao_toi_da_cot;
+        cout << YELLOW << "\t" << ++stt_top_10 << ") " << setw(20) << left << dssv[i].ho_ten << " [ ";
         for(int j = 0; j < chieu_cao; j++){
             // ▇
             cout << "▇";
