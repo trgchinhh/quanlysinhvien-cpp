@@ -559,28 +559,14 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
     float tyle_svtb = ((float)svtb / so_luong_tat_ca_sinh_vien) * 100;
     float tyle_svy = ((float)svy / so_luong_tat_ca_sinh_vien) * 100;
     cout << GREEN << "\t(*) Diem trung binh ca lop: " << fixed << setprecision(2) << diem_tbcl << RESET << endl;
-    cout << endl;
-    cout << YELLOW << "\t(%) Ty le sinh vien gioi: " << fixed << setprecision(2) << tyle_svg << "%" << endl;
-    cout << "\t(%) Ty le sinh vien kha: " << fixed << setprecision(2) << tyle_svk << "%" << endl;
+    cout << YELLOW << "\t(%) Ty le sinh vien gioi: " << fixed << setprecision(2) << tyle_svg << " %" << endl;
+    cout << "\t(%) Ty le sinh vien kha: " << fixed << setprecision(2) << tyle_svk << " %" << endl;
     cout << "\t(%) Ty le sinh vien trung binh: " << fixed << setprecision(2) << tyle_svtb << "%" << endl;
-    cout << "\t(%) Ty le sinh vien yeu: " << fixed << setprecision(2) << tyle_svy << "%" << endl;
+    cout << "\t(%) Ty le sinh vien yeu: " << fixed << setprecision(2) << tyle_svy << " %" << endl;
     cout << endl;
     cout << "\t(&) Diem cao nhat lop: " << diem_cao_nhat << " - " << slsv_cao_diem_nhat << " sinh vien" << endl;
     cout << "\t(&) Diem thap nhat lop: " << diem_thap_nhat << " - " << slsv_thap_diem_nhat << " sinh vien" << RESET << endl;
     cout << endl;
-    cout << GREEN << "\t(*) Danh sach sinh vien cao diem nhat" << RESET << endl;
-    Nodeptr l = list; bool co_sinh_vien = false; int stt = 0;
-    In_tieu_de_bang();
-    while(l != nullptr){
-        stt++;
-        if(l->data.diem == diem_cao_nhat){
-            Xuat_thong_tin_sinh_vien(l->data, stt);
-            co_sinh_vien = true;
-        }
-        l=l->link;
-    }
-    if(!co_sinh_vien) In_bang_khong_co_sinh_vien();
-    In_chan_bang();
 
     vector<SinhVien> dssv;
     Nodeptr k = list;
@@ -594,11 +580,12 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
     int n = min(5, (int)dssv.size());
     float top_5_diem_cao_nhat = dssv[0].diem;
     int chieu_cao_toi_da_cot = 30;
-    cout << GREEN <<"\n\t\t\tBIEU DO 5 SINH VIEN CAO DIEM NHAT LOP\n" << RESET << endl;
+    cout << GREEN <<"\t(*) Bieu do 5 sinh vien co diem cao nhat lop" << RESET << endl;
     for(int i = 0; i < n; i++){
         int chieu_cao = (dssv[i].diem / top_5_diem_cao_nhat) * chieu_cao_toi_da_cot;
         cout << YELLOW << "\t" << setw(20) << left << dssv[i].ho_ten << " [ ";
         for(int j = 0; j < chieu_cao; j++){
+            // ▇
             cout << "▇";
             Sleep(10);
         }
@@ -607,4 +594,18 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
         }
         cout << " ]  (" << fixed << setprecision(1) << dssv[i].diem << ")" << RESET << endl;
     }
+
+    cout << GREEN << "\n\t(*) Danh sach sinh vien dat diem toi da" << RESET << endl;
+    Nodeptr l = list; bool co_sinh_vien = false; int stt = 0;
+    In_tieu_de_bang();
+    while(l != nullptr){
+        stt++;
+        if(l->data.diem == diem_cao_nhat){
+            Xuat_thong_tin_sinh_vien(l->data, stt);
+            co_sinh_vien = true;
+        }
+        l=l->link;
+    }
+    if(!co_sinh_vien) In_bang_khong_co_sinh_vien();
+    In_chan_bang();
 }
