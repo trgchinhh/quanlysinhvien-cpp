@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <conio.h>
 #include <windows.h>
+#include "tacgia.h"
 using namespace std;
 
 // Định nghĩa hàm main 
@@ -10,6 +11,7 @@ using namespace std;
 struct SinhVien {
     string ho_ten;
     int tuoi;
+    string gioi_tinh;
     string ma_so;
     float diem;
 };
@@ -54,8 +56,10 @@ void In_bang_khong_co_sinh_vien();
 // Phân tích tên 
 string Lay_ten_cuoi(string ho_ten);
 void Chuyen_ve_ky_tu_thuong(string& ho_ten);
+void Chuyen_hoa_ky_tu_dau(string& gioi_tinh);
 
-// Các hàm chính 
+// Các hàm chính
+void Tacgia(); 
 void Doc_du_lieu_tu_file(string& ten_file, Nodeptr& list);
 void Ghi_du_lieu_vao_file(string& ten_file, Nodeptr& list);
 void In_thong_tin_sinh_vien(Nodeptr& list);
