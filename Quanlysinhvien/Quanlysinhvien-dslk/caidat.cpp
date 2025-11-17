@@ -96,7 +96,13 @@ bool Nhap_thong_tin_sinh_vien(SinhVien& sv){
     if(sv.tuoi < 18 || sv.tuoi > 40){
         cout << RED << "\t\t(!) Tuoi sinh vien phai tu 18 -> 40 !" << RESET << endl;
         return false;
-    }
+    } 
+    cout << GREEN << "\t\t(?) Nhap gioi tinh (nam/nu): " << RESET; cin >> sv.gioi_tinh;
+    Chuyen_hoa_ky_tu_dau(sv.gioi_tinh);
+    if(sv.gioi_tinh.empty() && sv.gioi_tinh != "Nam" && sv.gioi_tinh != "Nu"){
+        cout << RED << "\t\t(!) Gioi tinh sinh vien phai la nam hoac nu !" << RESET << endl;
+        return false;
+    } 
     cin.ignore();
     cout << GREEN << "\t\t(?) Nhap ma so: " << RESET; getline(cin, sv.ma_so);
     if(sv.ma_so.empty()){
@@ -113,9 +119,10 @@ bool Nhap_thong_tin_sinh_vien(SinhVien& sv){
 
 void Xuat_thong_tin_sinh_vien(SinhVien& sv, int stt){
     cout << YELLOW << "\t│ " << setw(3) << stt++ << " │ "
-     << setw(30) << left << sv.ho_ten << " │ "
-     << setw(5) << left << sv.tuoi << " │ "
-     << setw(10) << left << sv.ma_so << " │ "
+     << setw(25) << left << sv.ho_ten << " │ "
+     << setw(4) << left << sv.tuoi << " │ "
+     << setw(5) << left << sv.gioi_tinh << " │ "
+     << setw(12) << left << sv.ma_so << " │ "
      << setw(5) << fixed << setprecision(1) << sv.diem << " │\n" << RESET;
 }
 
@@ -161,7 +168,8 @@ void Doc_du_lieu_tu_file(string& ten_file, Nodeptr& list){
         stringstream ss(line);
         string tuoi_str, diem_str;
         getline(ss, sv.ho_ten, '-');     
-        getline(ss, tuoi_str, '-');       
+        getline(ss, tuoi_str, '-'); 
+        getline(ss, sv.gioi_tinh, '-');      
         getline(ss, sv.ma_so, '-');       
         getline(ss, diem_str, '-');       
 
@@ -182,7 +190,7 @@ void Ghi_du_lieu_vao_file(string& ten_file, Nodeptr& list){
     Nodeptr p = list;
     int co_luu = 0;
     while(p != nullptr){
-        file << p->data.ho_ten << '-' << p->data.tuoi << '-' << p->data.ma_so << '-' << p->data.diem << "\n";
+        file << p->data.ho_ten << '-' << p->data.tuoi << '-' << p->data.gioi_tinh << '-' << p->data.ma_so << '-' << p->data.diem << "\n";
         p = p->link;
         co_luu = 1;
     }
@@ -207,16 +215,30 @@ void In_thong_tin_sinh_vien(Nodeptr& list){
     In_chan_bang();
 }
 
+// void In_tieu_de_bang(){
+//     cout << YELLOW << "\t┌─────┬────────────────────────────────┬───────┬────────────┬───────┐\n";
+//     cout << "\t│ STT │ Ho Ten                         │ Tuoi  │ MSSV       │ Diem  │\n";
+//     cout << "\t├─────┼────────────────────────────────┼───────┼────────────┼───────┤\n";
+//     cout << RESET;
+// }
+
+// void In_chan_bang(){
+//     cout << YELLOW << "\t└─────┴────────────────────────────────┴───────┴────────────┴───────┘\n" << RESET;
+// }
+
 void In_tieu_de_bang(){
-    cout << YELLOW << "\t┌─────┬────────────────────────────────┬───────┬────────────┬───────┐\n";
-    cout << "\t│ STT │ Ho Ten                         │ Tuoi  │ MSSV       │ Diem  │\n";
-    cout << "\t├─────┼────────────────────────────────┼───────┼────────────┼───────┤\n";
+    cout << YELLOW 
+         << "\t┌─────┬───────────────────────────┬──────┬───────┬──────────────┬───────┐\n";
+    cout << "\t│ STT │ Ho Ten                    │ Tuoi │  GT   │ MSSV         │ Diem  │\n";
+    cout << "\t├─────┼───────────────────────────┼──────┼───────┼──────────────┼───────┤\n";
     cout << RESET;
 }
 
 void In_chan_bang(){
-    cout << YELLOW << "\t└─────┴────────────────────────────────┴───────┴────────────┴───────┘\n" << RESET;
+    cout << YELLOW 
+         << "\t└─────┴───────────────────────────┴──────┴───────┴──────────────┴───────┘\n" << RESET;
 }
+
 
 void In_bang_khong_co_sinh_vien(){
     string msg = "Khong co sinh vien nao";
@@ -241,6 +263,13 @@ string Lay_ten_cuoi(string ho_ten){
 
 void Chuyen_ve_ky_tu_thuong(string& ho_ten){
     transform(ho_ten.begin(), ho_ten.end(), ho_ten.begin(), ::tolower);
+}
+
+void Chuyen_hoa_ky_tu_dau(string& gioi_tinh){
+    for(char &gt : gioi_tinh){
+        gt = toupper(gt);
+        break;
+    }
 }
 
 void Them_thong_tin_sinh_vien(Nodeptr& list, string& ten_file){
@@ -289,6 +318,11 @@ void Sua_thong_tin_sinh_vien(Nodeptr& list, string& ten_file){
                 p->data.tuoi = tuoi_moi;
             }
             cin.ignore();
+            cout << GREEN << "\t\t(?) Nhap gioi tinh moi (Nhap enter neu khong sua): " << RESET;
+            string gioi_tinh_moi; getline(cin, gioi_tinh_moi);
+            if(!gioi_tinh_moi.empty()){
+                p->data.gioi_tinh = gioi_tinh_moi;
+            }
             cout << GREEN << "\t\t(?) Nhap ma so moi (Nhap enter neu khong sua): " << RESET;
             string ma_so_moi; getline(cin, ma_so_moi);
             if(!ma_so_moi.empty()){
@@ -348,8 +382,9 @@ void Tim_kiem_thong_tin_sinh_vien(Nodeptr& list){
     cout << YELLOW <<"\t1 - Tim kiem theo so thu tu" << endl;
     cout << "\t2 - Tim kiem theo ky tu ten" << endl;
     cout << "\t3 - Tim kiem theo tuoi" << endl;
-    cout << "\t4 - Tim kiem theo ma so" << endl;
-    cout << "\t5 - Tim kiem theo diem so" << RESET << endl;
+    cout << "\t4 - Tim kiem theo gioi tinh" << endl;
+    cout << "\t5 - Tim kiem theo ma so" << endl;
+    cout << "\t6 - Tim kiem theo diem so" << RESET << endl;
     cout << GREEN << "\t(?) Lua chon: " << RESET; int lua_chon; cin >> lua_chon;
     if(lua_chon == 1){
         cout << GREEN << "\t\t(?) Nhap so thu tu muon tim kiem: " << RESET;
@@ -406,6 +441,22 @@ void Tim_kiem_thong_tin_sinh_vien(Nodeptr& list){
         if(!co_sinh_vien) In_bang_khong_co_sinh_vien();
         In_chan_bang();
     } else if(lua_chon == 4){
+        cout << GREEN << "\t\t(?) Nhap gioi tinh ban muon tim kiem: " << RESET;
+        string gioi_tinh; cin >> gioi_tinh; 
+        Chuyen_hoa_ky_tu_dau(gioi_tinh);
+        Nodeptr p = list; bool co_sinh_vien = false; int stt = 0;
+        In_tieu_de_bang();
+        while(p != nullptr){
+            stt++;
+            if(p->data.gioi_tinh == gioi_tinh){
+                co_sinh_vien = true;
+                Xuat_thong_tin_sinh_vien(p->data, stt);
+            }
+            p=p->link;
+        }
+        if(!co_sinh_vien) In_bang_khong_co_sinh_vien();
+        In_chan_bang();
+    } else if(lua_chon == 5){
         cin.ignore();
         cout << GREEN <<"\t\t(?) Nhap ma so muon tim kiem (ky tu so): " << RESET;
         string ma_so_muon_tim; getline(cin, ma_so_muon_tim);
@@ -422,7 +473,7 @@ void Tim_kiem_thong_tin_sinh_vien(Nodeptr& list){
         }
         if(!co_sinh_vien) In_bang_khong_co_sinh_vien();
         In_chan_bang();
-    } else if(lua_chon == 5){
+    } else if(lua_chon == 6){
         cout << GREEN << "\t\t(?) Nhap diem so muon tim: " << RESET;
         float diem_muon_tim; cin >> diem_muon_tim;
         if(diem_muon_tim < 0 || diem_muon_tim > 10){
@@ -532,7 +583,7 @@ void Sap_xep_thong_tin_sinh_vien(Nodeptr& list, string& ten_file){
 }
 
 void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
-    int svg = 0, svk = 0, svtb = 0, svy = 0;
+    int svg = 0, svk = 0, svtb = 0, svy = 0, sv_nam = 0, sv_nu = 0;
     float tong_diem_ca_lop = 0, diem_cao_nhat = 0, diem_thap_nhat = 10;
     int so_luong_tat_ca_sinh_vien = Kiem_tra_so_luong_node(list);
     Nodeptr p = list;
@@ -544,6 +595,8 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
         tong_diem_ca_lop += p->data.diem;
         if(p->data.diem > diem_cao_nhat) diem_cao_nhat = p->data.diem;
         if(p->data.diem < diem_thap_nhat) diem_thap_nhat = p->data.diem;
+        if(p->data.gioi_tinh == "Nam") sv_nam ++;
+        else sv_nu ++;
         p=p->link;
     }
     Nodeptr q = list;
@@ -558,15 +611,17 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
     float tyle_svk = ((float)svk / so_luong_tat_ca_sinh_vien) * 100;
     float tyle_svtb = ((float)svtb / so_luong_tat_ca_sinh_vien) * 100;
     float tyle_svy = ((float)svy / so_luong_tat_ca_sinh_vien) * 100;
-    cout << GREEN << "\t(*) Diem trung binh ca lop: " << fixed << setprecision(2) << diem_tbcl << RESET << endl;
-    cout << YELLOW << "\t(%) Ty le sinh vien gioi: " << fixed << setprecision(2) << tyle_svg << " %" << endl;
-    cout << "\t(%) Ty le sinh vien kha: " << fixed << setprecision(2) << tyle_svk << " %" << endl;
-    cout << "\t(%) Ty le sinh vien trung binh: " << fixed << setprecision(2) << tyle_svtb << "%" << endl;
-    cout << "\t(%) Ty le sinh vien yeu: " << fixed << setprecision(2) << tyle_svy << " %" << endl;
-    cout << endl;
-    cout << "\t(&) Diem cao nhat lop: " << diem_cao_nhat << " - " << slsv_cao_diem_nhat << " sinh vien" << endl;
-    cout << "\t(&) Diem thap nhat lop: " << diem_thap_nhat << " - " << slsv_thap_diem_nhat << " sinh vien" << RESET << endl;
-    cout << endl;
+    cout << YELLOW << "\t┌• " << GREEN << "(*) Diem trung binh ca lop: " << fixed << setprecision(2) << diem_tbcl << RESET << endl;
+    cout << YELLOW << "\t├ (%) Ty le sinh vien gioi: " << fixed << setprecision(2) << tyle_svg << " %" << endl;
+    cout << "\t├ (%) Ty le sinh vien kha: " << fixed << setprecision(2) << tyle_svk << " %" << endl;
+    cout << "\t├ (%) Ty le sinh vien trung binh: " << fixed << setprecision(2) << tyle_svtb << "%" << endl;
+    cout << "\t├ (%) Ty le sinh vien yeu: " << fixed << setprecision(2) << tyle_svy << " %" << endl;
+    cout << "\t│\n";
+    cout << "\t├ (&) Gioi tinh nam: " << sv_nam << " sinh vien" << endl;
+    cout << "\t├ (&) Gioi tinh nu: " << sv_nu << " sinh vien" << endl;
+    cout << "\t├ (&) Diem cao nhat lop: " << diem_cao_nhat << " - " << slsv_cao_diem_nhat << " sinh vien" << endl;
+    cout << "\t├ (&) Diem thap nhat lop: " << diem_thap_nhat << " - " << slsv_thap_diem_nhat << " sinh vien" << endl;
+    cout << "\t│\n" << RESET;
 
     vector<SinhVien> dssv;
     Nodeptr k = list;
@@ -580,11 +635,11 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
     int n = min(5, (int)dssv.size());
     float top_diem_cao_nhat = dssv[0].diem;
     int chieu_cao_toi_da_cot = 35;
-    cout << GREEN <<"\t(*) Bieu do " << n << " sinh vien co diem cao nhat lop" << RESET << endl;
+    cout << YELLOW <<"\t├• " << GREEN << "(*) Bieu do " << n << " sinh vien co diem cao nhat lop" << RESET << endl;
     int stt_top_10 = 0;
     for(int i = 0; i < n; i++){
         int chieu_cao = (dssv[i].diem / top_diem_cao_nhat) * chieu_cao_toi_da_cot;
-        cout << YELLOW << "\t" << ++stt_top_10 << ") " << setw(20) << left << dssv[i].ho_ten << " [ ";
+        cout << YELLOW << "\t│ " << ++stt_top_10 << " - " << setw(20) << left << dssv[i].ho_ten << " [ ";
         for(int j = 0; j < chieu_cao; j++){
             // ▇
             cout << "▇";
@@ -593,10 +648,11 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
         for(int j = chieu_cao; j < chieu_cao_toi_da_cot; j++){
             cout << " ";
         }
-        cout << " ]  (" << fixed << setprecision(1) << dssv[i].diem << ")" << RESET << endl;
+        cout << " ]  (" << fixed << setprecision(1) << dssv[i].diem << ")" << endl;
     }
+    cout << "\t│\n" << RESET;
 
-    cout << GREEN << "\n\t(*) Danh sach sinh vien dat diem toi da" << RESET << endl;
+    cout << YELLOW << "\t└• " << GREEN << "(*) Danh sach sinh vien dat diem toi da" << RESET << endl;
     Nodeptr l = list; bool co_sinh_vien = false; int stt = 0;
     In_tieu_de_bang();
     while(l != nullptr){
