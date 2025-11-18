@@ -32,7 +32,7 @@ void In_banner(){
     while (getline(ss, line)) {
         In_giua_man_hinh(line, YELLOW);
         cout << endl;
-        Sleep(50);
+        Sleep(10);
     }
 }
 
@@ -51,7 +51,7 @@ void In_banner_tam_biet(){
     while (getline(ss, line)) {
         In_giua_man_hinh(line, YELLOW);
         cout << endl;
-        Sleep(50);
+        Sleep(10);
     }
 }
 
@@ -124,6 +124,7 @@ void Xuat_thong_tin_sinh_vien(SinhVien& sv, int stt){
      << setw(5) << left << sv.gioi_tinh << " │ "
      << setw(12) << left << sv.ma_so << " │ "
      << setw(5) << fixed << setprecision(1) << sv.diem << " │\n" << RESET;
+    Sleep(10);
 }
 
 void Them_vao_cuoi_list(Nodeptr& list, Nodeptr& p){
@@ -652,7 +653,7 @@ void Thong_ke_thong_tin_sinh_vien(Nodeptr& list){
         for(int j = 0; j < chieu_cao; j++){
             // ▇
             cout << "▇";
-            Sleep(10);
+            Sleep(5);
         }
         for(int j = chieu_cao; j < chieu_cao_toi_da_cot; j++){
             cout << " ";
@@ -692,6 +693,6 @@ void Tacgia() {
     string line;
     while(getline(ss, line)){
         cout << YELLOW << "\t" << line << RESET << endl;
-        Sleep(50);
+        Sleep(10);
     }
 }
