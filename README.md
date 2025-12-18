@@ -37,6 +37,11 @@
 ### Bản nâng cấp
 - Fix lại tính năng sắp xếp
 - Thêm tính năng bảo mật khi vào chương trình
+### Bản có phí 
+- Có âm thanh / hiệu ứng / màu sắc
+- Tăng cường bảo mật
+- Điều khiển bằng phím (không cần nhập)
+- Xuất file excel
   
 ## Yêu cầu
 - Phiên bản C++ 17 trở lên 
