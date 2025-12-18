@@ -17,7 +17,8 @@
 ## Liên kết 
 ### Video demo chương trình 
 - Demo bản cũ: [Xem tại đây](https://drive.google.com/file/d/1EFgBoXKGhyXUDVAhyr79iHXTcBKZhzX8/view?usp=drive_link)
-- Demo bản nâng cấp: [Xem tại đây](https://drive.google.com/file/d/1E20zl08ipfqZVcFCxfBLLSCD4GIvrDVN/view?usp=drive_link) 
+- Demo bản nâng cấp: [Xem tại đây](https://drive.google.com/file/d/1E20zl08ipfqZVcFCxfBLLSCD4GIvrDVN/view?usp=drive_link)
+- Demo bản có phí: [Xem tại đây](https://drive.google.com/file/d/17zhffhYhfUDijZ3rbaBdcRYocGGTVYKM/view?usp=sharing)
 ### Link bài viết facebook 
 - Bài viết: [Xem tại đây](https://www.facebook.com/share/p/1C8QhsLBQP/)
 ### Bản nâng cấp (tăng cường bảo mật)
