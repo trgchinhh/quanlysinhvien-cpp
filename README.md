@@ -18,7 +18,7 @@
 ### Video demo chương trình 
 - Demo phiên bản cũ: [Xem video tại đây](https://drive.google.com/file/d/1EFgBoXKGhyXUDVAhyr79iHXTcBKZhzX8/view?usp=drive_link)
 - Demo phiên bản nâng cấp: [Xem video tại đây](https://drive.google.com/file/d/1E20zl08ipfqZVcFCxfBLLSCD4GIvrDVN/view?usp=drive_link)
-- Demo phiên bản có phí (TUI Terminal): [Xem video tại đây](https://drive.google.com/file/d/17zhffhYhfUDijZ3rbaBdcRYocGGTVYKM/view?usp=sharing)
+- Demo phiên bản có phí: [Xem video tại đây](https://drive.google.com/file/d/17zhffhYhfUDijZ3rbaBdcRYocGGTVYKM/view?usp=sharing)
 ### Link bài viết facebook 
 - Bài viết: [Xem tại đây](https://www.facebook.com/share/p/1C8QhsLBQP/)
 ### Bản nâng cấp (tăng cường bảo mật)
