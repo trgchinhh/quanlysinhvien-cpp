@@ -10,6 +10,7 @@
 - Chạy trên môi trường dòng lệnh (commandline) với thiết kế giao diện đẹp mắt
 - Cảm hứng được lấy từ video của anh Vũ Nguyễn Coder
 - Link video lấy cảm hứng: [Quản lý sinh viên Vũ Nguyễn Coder](https://youtu.be/9WdQZp96Xwk?si=iXYpOn0YnpqPgzX8)
+- Bản Python: [Quản lý sinh viên Python](https://github.com/trgchinhh/quanlysinhvien-py)
 - Bản C++ mới (dùng DSLK): [Quản lý sinh viên C++ DSLK](https://github.com/trgchinhh/quanlysinhvien/tree/main/Quanlysinhvien/Quanlysinhvien-dslk)
 - Các bản còn lại dùng Vector để liên kết và lưu trữ danh sách sinh viên 
 
